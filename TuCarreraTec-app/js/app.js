@@ -1,11 +1,12 @@
-// Referencias a elementos del DOM
+// Referencias a los elementos del DOM
 const contenedor = document.getElementById('contenedorCarreras');
 const inputBuscar = document.getElementById('inputBuscar');
+const selectArea = document.getElementById('selectArea');
 
-// Función para renderizar las tarjetas de carreras en pantalla
+// 1. Función para renderizar las tarjetas de carreras en pantalla
 function renderizarCarreras(lista) {
   if (lista.length === 0) {
-    contenedor.innerHTML = '<p class="sin-resultados">No se encontraron carreras con ese nombre.</p>';
+    contenedor.innerHTML = '<p class="sin-resultados">No se encontraron carreras que coincidan con la búsqueda.</p>';
     return;
   }
 
@@ -21,18 +22,25 @@ function renderizarCarreras(lista) {
   `).join('');
 }
 
-// Búsqueda en tiempo real por nombre
-inputBuscar.addEventListener('input', (evento) => {
-  const textoBusqueda = evento.target.value.toLowerCase().trim();
-  
-  const carrerasFiltradas = carreras.filter(carrera => 
-    carrera.nombre.toLowerCase().includes(textoBusqueda)
-  );
+// 2. Función unificada que aplica ambos filtros (Buscador por Texto + Menú Desplegable por Área)
+function aplicarFiltros() {
+  const textoBusqueda = inputBuscar.value.toLowerCase().trim();
+  const areaSeleccionada = selectArea.value;
+
+  const carrerasFiltradas = carreras.filter(carrera => {
+    const coincideNombre = carrera.nombre.toLowerCase().includes(textoBusqueda);
+    const coincideArea = (areaSeleccionada === "todas") || (carrera.area === areaSeleccionada);
+    return coincideNombre && coincideArea;
+  });
 
   renderizarCarreras(carrerasFiltradas);
-});
+}
 
-// Carga inicial al abrir la página
+// 3. Listeners para detectar eventos de entrada en tiempo real
+inputBuscar.addEventListener('input', aplicarFiltros);
+selectArea.addEventListener('change', aplicarFiltros);
+
+// 4. Carga inicial del catálogo al abrir la página
 document.addEventListener('DOMContentLoaded', () => {
   renderizarCarreras(carreras);
 });
