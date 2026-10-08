@@ -1,3 +1,12 @@
+// Estructura modelo del objeto Carrera 
+const carreraEstructuraModelo = {
+  id: "",           // Identificador único (ej: "isc", "ind", "ige")
+  nombre: "",       // Nombre oficial de la carrera
+  area: "",         // Área o campo de conocimiento
+  resumen: "",      // Descripción corta para mostrar en la tarjeta de la lista
+  modalidad: "",    // Escolarizada, Sabatina, etc.
+  duracion: ""      // Semestres o periodos
+};
 const carreras = [
   {
     id: "isc",
