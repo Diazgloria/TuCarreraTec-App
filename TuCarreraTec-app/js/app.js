@@ -44,3 +44,8 @@ selectArea.addEventListener('change', aplicarFiltros);
 document.addEventListener('DOMContentLoaded', () => {
   renderizarCarreras(carreras);
 });
+
+// 5. Función para manejar la selección e ir al detalle de la carrera
+function verDetalleCarrera(idCarrera) {
+  window.location.href = `detalle.html?id=${idCarrera}`;
+}
