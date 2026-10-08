@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TuCarreraTec - ITSX</title>
+  <title>TuCarreraTec - Oferta Académica ITSX</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>TuCarreraTec - ITSX</h1>
+  <header class="header">
+    <h1>TuCarreraTec</h1>
+    <p>Oferta Académica del Instituto Tecnológico Superior de Xalapa</p>
   </header>
 
-  <main>
-    <!-- Aquí se cargará la lista de carreras -->
-    <div id="contenedorCarreras"></div>
+  <main class="container">
+    <section class="filtros">
+      <input type="text" id="inputBuscar" placeholder="🔍 Buscar carrera por nombre...">
+      <select id="selectArea">
+        <option value="todas">Todas las áreas</option>
+        <option value="Físico-Matemáticas e Ingenierías">Físico-Matemáticas e Ingenierías</option>
+        <option value="Ciencias Biológicas y de la Salud">Ciencias Biológicas y de la Salud</option>
+        <option value="Económico-Administrativas">Económico-Administrativas</option>
+      </select>
+    </section>
+
+    <section id="contenedorCarreras" class="grid-carreras">
+      <!-- Las tarjetas se cargarán dinámicamente con JS -->
+    </section>
   </main>
 
   <script src="js/data.js"></script>
